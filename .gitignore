@@ -61,3 +61,5 @@ typings/
 config\.json
 
 package-lock\.json
+
+Python/\.idea/
