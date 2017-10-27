@@ -1,0 +1,28 @@
+{
+  "name": "whosaidbot",
+  "version": "1.0.0",
+  "description": "A discord bot that tries to predict who said something.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tvde1/WhoSaidBot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "Tvde1",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tvde1/WhoSaidBot/issues"
+  },
+  "homepage": "https://github.com/Tvde1/WhoSaidBot#readme",
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "mongoose": "^4.12.4",
+    "python-shell": "^0.4.0",
+    "tvde1logger": "^1.0.10"
+  }
+}
