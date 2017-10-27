@@ -23,6 +23,6 @@
     "discord.js": "^11.2.1",
     "mongoose": "^4.12.4",
     "python-shell": "^0.4.0",
-    "tvde1logger": "^1.0.10"
+    "tvde1logger": "^1.0.11"
   }
 }
