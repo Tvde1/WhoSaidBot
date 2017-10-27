@@ -1,12 +1,14 @@
 const mongoose       = require('mongoose');
-const { Connection } = mongoose; //eslint-disable-line no-unused-vars
-const { Message }    = require('discord.js');  //eslint-disable-line no-unused-vars
-const Logger         = require('tvde1logger'); //eslint-disable-line no-unused-vars
+                       require('mongoose-long')(mongoose); //eslint-disable-line indent
+const SchemaTypes    = mongoose.Schema.Types;
+const { Connection } = mongoose;                           //eslint-disable-line no-unused-vars
+const { Message }    = require('discord.js');              //eslint-disable-line no-unused-vars
+const Logger         = require('tvde1logger');             //eslint-disable-line no-unused-vars
 
 const messageSchema = new mongoose.Schema({
     text: String,
-    author: Number,
-    guildid: Number
+    author: SchemaTypes.Long,
+    guildid: SchemaTypes.Long
 });
 
 const DBMessage = mongoose.model('messages', messageSchema);
@@ -67,6 +69,22 @@ class DatabaseClient {
         });
 
         dbMessage.save();
+    }
+
+    /**
+     * Gets messages by guild id.
+     * @param {number} guildid 
+     * @returns {Promise<DBMessage[]>}
+     */
+    getMessagesFromGuild(guildid) {
+        return new Promise((resolve, reject) => {
+            DBMessage.find({guildid}, (err, res) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(res);
+            });
+        });
     }
 }
 

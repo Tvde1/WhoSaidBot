@@ -20,9 +20,10 @@
   },
   "homepage": "https://github.com/Tvde1/WhoSaidBot#readme",
   "dependencies": {
-    "discord.js": "^11.2.1",
+    "discord.js": "github:hydrabolt/discord.js",
     "mongoose": "^4.12.4",
-    "python-shell": "^0.4.0",
+    "mongoose-long": "^0.1.1",
+    "natural": "^0.5.4",
     "tvde1logger": "^1.0.11"
   }
 }

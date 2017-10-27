@@ -1,9 +1,10 @@
-const CommandHandler = require('./helpers/commandHandler.js');
-const DatabaseClient = require('./helpers/databaseClient');
-const EventHandler   = require('./helpers/eventHandler');
-const tvde1logger    = require('tvde1logger');
-const { Client }     = require('discord.js');
-const Utils          = require('./helpers/utils');
+const CommandHandler   = require('./helpers/commandHandler.js');
+const DatabaseClient   = require('./helpers/databaseClient');
+const PredictionClient = require('./helpers/predictionClient');
+const EventHandler     = require('./helpers/eventHandler');
+const tvde1logger      = require('tvde1logger');
+const { Client }       = require('discord.js');
+const Utils            = require('./helpers/utils');
 
 class ExtendedClient extends Client {
     /**
@@ -15,11 +16,12 @@ class ExtendedClient extends Client {
 
         this._config = config;
 
-        this._logger         = new tvde1logger('WhoSaidBot', !process.env.DONTLOGTIME);
-        this._utils          = new Utils();
-        this._databaseClient = new DatabaseClient(this);
-        this._commandHandler = new CommandHandler(this._logger);
-        this._eventHandler   = new EventHandler(this);
+        this._logger           = new tvde1logger('WhoSaidBot', !process.env.DONTLOGTIME);
+        this._utils            = new Utils();
+        this._databaseClient   = new DatabaseClient(this);
+        this._commandHandler   = new CommandHandler(this._logger);
+        this._eventHandler     = new EventHandler(this);
+        this._predictionClient = new PredictionClient(this);
 
         this._commandHandler.load();
         this._eventHandler.load();
@@ -60,6 +62,13 @@ class ExtendedClient extends Client {
      */
     get commandHandler() {
         return this._commandHandler;
+    }
+
+    /**
+     * @returns {PredictionClient}
+     */
+    get predictionClient() {
+        return this._predictionClient;
     }
 }
 
