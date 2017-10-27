@@ -11,16 +11,17 @@ const messageSchema = new mongoose.Schema({
 
 const DBMessage = mongoose.model('messages', messageSchema);
 
-class DatabaseUtils {
+class DatabaseClient {
     /**
-     * Creates a new DatabaseUtils class.
+     * Creates a new DatabaseClient class.
      * @param {string} dbUrl The url of the database. 
      * @param {Logger} logger The logger.
      */
-    constructor(logger) {
-        mongoose.Promise = global.Promise;
-        this._logger     = logger;
-        this._connection = mongoose.connection;
+    constructor(client) {
+        mongoose.Promise   = global.Promise;
+        this._client       = client;
+        this._logger       = client.logger;
+        this._connection   = mongoose.connection;
         this._isConnected  = false;
 
         this._connection.on('error', err => this._logger.error('Database', `Mongoose connection error: ${err.message}.`));
@@ -28,12 +29,18 @@ class DatabaseUtils {
     }
 
     /**
-     * 
+     * Creates a connection.
      * @param {string} url The database url. 
      */
     connect(url) {
         this._url = url;
-        mongoose.connect(this._url, { useMongoClient: true });
+        mongoose.connect(this._url, { useMongoClient: true }, (err) => {
+            if (err) {
+                this._logger.error('Connecting with Database', `Error while connecting: ${err && err.tack || err}`);
+                return;
+            }
+            this._isConnected = true;
+        });
     }
 
     /**
@@ -63,4 +70,4 @@ class DatabaseUtils {
     }
 }
 
-module.exports = DatabaseUtils;
+module.exports = DatabaseClient;
