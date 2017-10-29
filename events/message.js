@@ -6,20 +6,19 @@ const { Message }    = require('discord.js');        //eslint-disable-line no-un
  * @param {ExtendedClient} client The active client.
  * @param {Message} message The received message.
  */
-function run(client, message) {
+module.exports = (client, message) => {
 
     if (message.author.bot) {
         return;
         //TODO: Maybe don't ignore bots?
     }
 
-    if (message.content.split(' ').length >= 2 && !message.content.toLowerCase().startsWith(client.config.prefix.toLowerCase())) {
+    if (message.content.split(' ').length >= 2 && !message.content.toLowerCase().startsWith(client.config.prefix.toLowerCase()) 
+        && !message.content.startsWith('.')) {
         client.databaseClient.saveMessage(message);
     }
 
     if (message.content.toLowerCase().startsWith(client.config.prefix.toLowerCase())) {
         client.commandHandler.execute(client, message);
     }
-}
-
-module.exports = run;
+};
