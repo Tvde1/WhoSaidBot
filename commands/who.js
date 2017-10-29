@@ -29,7 +29,7 @@ class WhoCommand extends Command {
             return;
         }
 
-        const user = this._client.users.get(`${prediction}`);
+        const user = client.users.get(`${prediction}`);
         message.reply(`I think ${user.tag} is most likely to say it.`);
     }
 }
