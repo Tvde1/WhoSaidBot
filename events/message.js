@@ -13,7 +13,7 @@ function run(client, message) {
         //TODO: Maybe don't ignore bots?
     }
 
-    if (message.content.length > 3 && message.content.split(' ').length > 2) {
+    if (message.content.split(' ').length >= 2 && !message.content.toLowerCase().startsWith(client.config.prefix.toLowerCase())) {
         client.databaseClient.saveMessage(message);
     }
 
