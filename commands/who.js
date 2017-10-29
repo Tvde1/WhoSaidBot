@@ -24,7 +24,13 @@ class WhoCommand extends Command {
 
         const prediction = await client.predictionClient.predict(text, message.guild.id);
 
-        message.reply(`I think ${prediction} is most likely to say it.`);
+        if (!prediction) {
+            message.reply('I have no idea who could have said that.');
+            return;
+        }
+
+        const user = this._client.users.get(`${prediction}`);
+        message.reply(`I think ${user.tag} is most likely to say it.`);
     }
 }
 

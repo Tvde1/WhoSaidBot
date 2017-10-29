@@ -49,10 +49,7 @@ class PredictionClient {
             }
         }
 
-        const userid = maxPerson.toString();
-        const user   = this._client.users.get(userid);
-
-        return user.tag;
+        return maxPerson;
     }
 
     load() {
