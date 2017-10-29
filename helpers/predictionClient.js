@@ -22,8 +22,6 @@ class PredictionClient {
             tfidf.addDocument(message.text, message.author);
         }
 
-        // const data = [];
-
         const dataPoints = new Map();
 
         tfidf.tfidfs(text, (i, measure) => {  
@@ -34,7 +32,6 @@ class PredictionClient {
             } else {
                 dataPoints.set(authorArray[i], [measure]);
             }
-            // data.push([measure, authorArray[i]]);
         });
 
 

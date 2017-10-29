@@ -1,14 +1,12 @@
 const mongoose       = require('mongoose');
-                       require('mongoose-long')(mongoose); //eslint-disable-line indent
-const SchemaTypes    = mongoose.Schema.Types;
 const { Connection } = mongoose;                           //eslint-disable-line no-unused-vars
 const { Message }    = require('discord.js');              //eslint-disable-line no-unused-vars
 const Logger         = require('tvde1logger');             //eslint-disable-line no-unused-vars
 
 const messageSchema = new mongoose.Schema({
     text: String,
-    author: SchemaTypes.Long,
-    guildid: SchemaTypes.Long
+    author: String,
+    guildid: String
 });
 
 const DBMessage = mongoose.model('messages', messageSchema);
@@ -64,8 +62,8 @@ class DatabaseClient {
 
         const dbMessage = new DBMessage({
             text: message.content,
-            author: message.author.id,
-            guildid: message.guild ? message.guild.id : null 
+            author: message.author.id.toString(),
+            guildid: message.guild ? message.guild.id.toString() : null 
         });
 
         dbMessage.save();

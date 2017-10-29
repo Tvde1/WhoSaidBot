@@ -28,8 +28,13 @@ class WhoCommand extends Command {
             message.reply('I have no idea who could have said that.');
             return;
         }
+        
+        const user = client.users.get(prediction);
 
-        const user = client.users.get(`${prediction}`);
+        if (!user) {
+            message.reply(`Something went wrong. I have an idea who it is (${prediction}), but I can't find their username.`);
+        }
+
         message.reply(`I think ${user.tag} is most likely to say it.`);
     }
 }
