@@ -1,7 +1,7 @@
 const mongoose       = require('mongoose');
-const { Connection } = mongoose;                           //eslint-disable-line no-unused-vars
-const { Message }    = require('discord.js');              //eslint-disable-line no-unused-vars
-const Logger         = require('tvde1logger');             //eslint-disable-line no-unused-vars
+const { Connection } = mongoose;               //eslint-disable-line no-unused-vars
+const { Message }    = require('discord.js');  //eslint-disable-line no-unused-vars
+const Logger         = require('tvde1logger'); //eslint-disable-line no-unused-vars
 
 const messageSchema = new mongoose.Schema({
     text: String,
