@@ -9,7 +9,7 @@ const messageSchema = new mongoose.Schema({
     guildid: String
 });
 
-const DBMessage = mongoose.model('messages', messageSchema);
+const DBMessage = mongoose.model('WhoSaidBot', messageSchema);
 
 class DatabaseClient {
     /**
