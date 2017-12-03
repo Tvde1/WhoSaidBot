@@ -32,7 +32,7 @@ class WhoCommand extends Command {
         const user = client.users.get(prediction);
 
         if (!user) {
-            message.reply(`Something went wrong. I have an idea who it is (${prediction}), but I can't find their username.`);
+            return message.reply(`Something went wrong. I have an idea who it is (${prediction}), but I can't find their username.`);
         }
 
         message.reply(`I think ${user.tag} is most likely to say it.`);
