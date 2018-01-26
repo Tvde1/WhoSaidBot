@@ -2,7 +2,6 @@ const ExtendedClient = require('../extendedClient'); //eslint-disable-line no-un
 const natural        = require('natural');
 // const svm            = require('svm');
 
-
 class PredictionClient {
     /**
      * 
@@ -33,7 +32,6 @@ class PredictionClient {
                 dataPoints.set(authorArray[i], [measure]);
             }
         });
-
 
         let maxPerson;
         let maxAvg = 0;
