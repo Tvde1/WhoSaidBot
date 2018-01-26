@@ -50,7 +50,7 @@ class CommandHandler {
             await command.run(client, message, args);
         } catch (err) {
             message.channel.send(`❌ Error: \`${err.message}\`
-If this keeps happening, contact Tvde1#9191.`);
+If this keeps happening, contact Tvde1#0001.`);
         }
     }
 }
